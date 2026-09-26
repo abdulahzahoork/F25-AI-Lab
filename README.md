@@ -14,15 +14,15 @@ The repository is organized according to the lab structure provided by the instr
 ```text
 F25-AI-Lab/
 │
-├── Lab-1/
+├── Lab-01/
 │   ├── task_no_solution.py
 │   └── explanation.docx
 │
-├── Lab-2/
+├── Lab-02/
 │   ├── task_no_solution.py
 │   └── explanation.docx
 │
-├── Lab-3/
+├── Lab-03/
 │   ├── task_no_solution.py
 │   └── explanation.docx
 │
@@ -69,8 +69,8 @@ These files are organized inside their respective lab folders as required by the
 
 ## Author
 
-**Muhammad Abdullah Khan** 
-**Roll No: SU92-BSSEM-S25-027** 
+**Muhammad Abdullah Khan**<br>
+**Roll No: SU92-BSSEM-S25-027**<br> 
 Artificial Intelligence Laboratory  
 
 ---
