@@ -5,35 +5,35 @@ orders = [
     [8, 7, 6, 5, 4, 3, 2, 1]
 ]
 
-treeDepth = math.log2(len(orders[0]))
-leafCount = 0
+tree_depth = math.log2(len(orders[0]))
+leaf_count = 0
 
-def minMax(curDepth, nodeIndex, isMaxTurn):
-    global leafCount
+def min_max(cur_depth, node_index, is_max_turn):
+    global leaf_count
 
-    if curDepth == treeDepth:
-        leafCount = leafCount + 1
-        return scores[nodeIndex]
+    if cur_depth == tree_depth:
+        leaf_count = leaf_count + 1
+        return scores[node_index]
 
-    if isMaxTurn:
-        return max(minMax(curDepth + 1, nodeIndex * 2, False),
-                   minMax(curDepth + 1, nodeIndex * 2 + 1, False))
+    if is_max_turn:
+        return max(min_max(cur_depth + 1, node_index * 2, False),
+                   min_max(cur_depth + 1, node_index * 2 + 1, False))
     else:
-        return min(minMax(curDepth + 1, nodeIndex * 2, True),
-                   minMax(curDepth + 1, nodeIndex * 2 + 1, True))
+        return min(min_max(cur_depth + 1, node_index * 2, True),
+                   min_max(cur_depth + 1, node_index * 2 + 1, True))
 
 
-def alphaBeta(curDepth, nodeIndex, isMaxTurn, alpha, beta):
-    global leafCount
+def alpha_beta(cur_depth, node_index, is_max_turn, alpha, beta):
+    global leaf_count
 
-    if curDepth == treeDepth:
-        leafCount = leafCount + 1
-        return scores[nodeIndex]
+    if cur_depth == tree_depth:
+        leaf_count = leaf_count + 1
+        return scores[node_index]
 
-    if isMaxTurn:
+    if is_max_turn:
         best = -1000
         for i in range(2):
-            value = alphaBeta(curDepth + 1, nodeIndex * 2 + i, False, alpha, beta)
+            value = alpha_beta(cur_depth + 1, node_index * 2 + i, False, alpha, beta)
             if value > best:
                 best = value
             if best > alpha:
@@ -44,7 +44,7 @@ def alphaBeta(curDepth, nodeIndex, isMaxTurn, alpha, beta):
     else:
         best = 1000
         for i in range(2):
-            value = alphaBeta(curDepth + 1, nodeIndex * 2 + i, True, alpha, beta)
+            value = alpha_beta(cur_depth + 1, node_index * 2 + i, True, alpha, beta)
             if value < best:
                 best = value
             if best < beta:
@@ -58,15 +58,15 @@ def alphaBeta(curDepth, nodeIndex, isMaxTurn, alpha, beta):
 for order in orders:
     scores = order
 
-    leafCount = 0
-    minimaxValue = minMax(0, 0, True)
-    minimaxLeaves = leafCount
+    leaf_count = 0
+    minimax_value = min_max(0, 0, True)
+    minimax_leaves = leaf_count
 
-    leafCount = 0
-    alphaBetaValue = alphaBeta(0, 0, True, -1000, 1000)
-    alphaBetaLeaves = leafCount
+    leaf_count = 0
+    alpha_beta_value = alpha_beta(0, 0, True, -1000, 1000)
+    alpha_beta_leaves = leaf_count
 
     print("Scores:", scores)
-    print("Minimax value:", minimaxValue, "| Leaves:", minimaxLeaves)
-    print("Alpha-Beta value:", alphaBetaValue, "| Leaves:", alphaBetaLeaves)
+    print("Minimax value:", minimax_value, "| Leaves:", minimax_leaves)
+    print("Alpha-Beta value:", alpha_beta_value, "| Leaves:", alpha_beta_leaves)
     print()
